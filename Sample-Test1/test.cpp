@@ -9,6 +9,7 @@ public :
 	void AssertIllegalArgument(string guessNum) {
 		try {
 			game.guess(guessNum);
+			FAIL();
 		}
 		catch (exception e)
 		{
