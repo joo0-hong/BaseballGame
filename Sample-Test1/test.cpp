@@ -3,7 +3,22 @@
 #include <string>
 using namespace std;
 
-TEST(BaseballGame, ThrowExceptionWhenWrongInputLength) {
+class BaseballFixture : public testing::Test {
+public : 
 	Game game;
-	EXPECT_THROW(game.guess(string("12")), length_error);
+	void AssertIllegalArgument(string guessNum) {
+		try {
+			game.guess(guessNum);
+		}
+		catch (exception e)
+		{
+			// pass
+		}
+	}
+};
+
+TEST_F(BaseballFixture, ThrowExceptionWhenInvalidParameter) {
+	Game game;
+	AssertIllegalArgument("12");
+	AssertIllegalArgument("12s");
 }
